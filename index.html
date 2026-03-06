@@ -13,238 +13,168 @@
   <style>
     :root{
       --bg:#0b1113;
-      --bg-2:#122027;
+      --bg2:#122027;
       --card:rgba(255,255,255,0.05);
       --border:rgba(255,255,255,0.09);
       --text:#f5f7f4;
       --muted:#b3bdb7;
-      --accent-1:#b1cf62;
-      --accent-2:#67af8a;
-      --accent-3:#2f7087;
-      --shadow:0 24px 80px rgba(0,0,0,0.35);
+      --accent1:#b1cf62;
+      --accent2:#67af8a;
+      --accent3:#2f7087;
     }
 
     *{
       box-sizing:border-box;
     }
 
-    html, body{
+    html,body{
       margin:0;
       min-height:100%;
-      font-family:"Inter", sans-serif;
+      font-family:"Inter",sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 20% 20%, rgba(177,207,98,0.12), transparent 28%),
-        radial-gradient(circle at 80% 25%, rgba(47,112,135,0.18), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(103,175,138,0.10), transparent 28%),
-        linear-gradient(135deg, var(--bg), var(--bg-2));
+        radial-gradient(circle at 20% 20%, rgba(177,207,98,0.12), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(47,112,135,0.18), transparent 35%),
+        linear-gradient(135deg,var(--bg),var(--bg2));
     }
 
     body{
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:24px;
-      overflow:hidden;
+      padding:40px 20px;
     }
 
-    .orb{
-      position:fixed;
-      border-radius:999px;
-      filter:blur(80px);
-      opacity:.35;
-      z-index:0;
-      pointer-events:none;
-      animation:floatOrb 10s ease-in-out infinite;
-    }
-
-    .orb.one{
-      width:220px;
-      height:220px;
-      background:rgba(177,207,98,0.35);
-      top:8%;
-      left:8%;
-    }
-
-    .orb.two{
-      width:280px;
-      height:280px;
-      background:rgba(47,112,135,0.35);
-      bottom:8%;
-      right:10%;
-      animation-delay:2s;
-    }
-
-    @keyframes floatOrb{
-      0%,100%{transform:translateY(0) translateX(0)}
-      50%{transform:translateY(-10px) translateX(8px)}
-    }
-
-    .card{
-      position:relative;
-      z-index:1;
+    .container{
+      max-width:1000px;
       width:100%;
-      max-width:880px;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:30px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
       text-align:center;
-      padding:64px 34px 48px;
-      overflow:hidden;
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 15%, rgba(255,255,255,0.05), transparent 25%);
-      pointer-events:none;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:9px 16px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      color:var(--muted);
-      font-size:12px;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      margin-bottom:26px;
-    }
-
-    .badge::before{
-      content:"";
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
-      box-shadow:0 0 14px rgba(103,175,138,0.55);
     }
 
     .logo-wrap{
       position:relative;
-      width:160px;
-      height:160px;
-      margin:0 auto 28px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      margin-bottom:30px;
     }
 
-   .logo-wrap::before{
-  content:"";
-  position:absolute;
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  background:
-    radial-gradient(circle at 30% 30%, rgba(177,207,98,0.28), transparent 35%),
-    radial-gradient(circle at 70% 70%, rgba(47,112,135,0.24), transparent 40%),
-    radial-gradient(circle, rgba(103,175,138,0.14), transparent 65%);
-  filter:blur(22px);
-  animation:glowPulse 7s ease-in-out infinite;
+    .logo-wrap::before{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(177,207,98,0.28), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(47,112,135,0.24), transparent 40%),
+        radial-gradient(circle, rgba(103,175,138,0.14), transparent 65%);
+      filter:blur(22px);
+      animation:glowPulse 7s ease-in-out infinite;
     }
 
-.logo{
-  width:180px;
-  position:relative;
-  z-index:1;
-  animation:float 6s ease-in-out infinite;
-  filter:drop-shadow(0 12px 28px rgba(0,0,0,0.28))
-         drop-shadow(0 0 14px rgba(103,175,138,0.08));
-}
+    .logo{
+      width:180px;
+      position:relative;
+      z-index:1;
+      animation:float 6s ease-in-out infinite;
+      filter:drop-shadow(0 12px 28px rgba(0,0,0,0.28))
+             drop-shadow(0 0 14px rgba(103,175,138,0.08));
+    }
 
-@keyframes glowPulse{
-  0%,100%{
-    transform:translate(-50%,-50%) scale(1);
-    opacity:0.95;
-  }
-  50%{
-    transform:translate(-50%,-50%) scale(1.08);
-    opacity:1;
-  }
-}
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-8px)}
+    }
+
+    @keyframes glowPulse{
+      0%,100%{
+        transform:translate(-50%,-50%) scale(1);
+        opacity:0.95;
+      }
+      50%{
+        transform:translate(-50%,-50%) scale(1.08);
+        opacity:1;
+      }
+    }
 
     h1{
+      font-size:clamp(40px,6vw,70px);
       margin:0;
-      font-size:clamp(38px, 7vw, 74px);
-      line-height:1;
-      letter-spacing:0.04em;
       font-weight:800;
+      letter-spacing:0.04em;
     }
 
     .subtitle{
-      max-width:680px;
-      margin:20px auto 0;
+      margin-top:18px;
       color:var(--muted);
-      font-size:clamp(17px, 2.3vw, 22px);
+      font-size:20px;
       line-height:1.7;
     }
 
-    .accent-line{
-      width:90px;
+    .line{
+      width:120px;
       height:3px;
+      margin:32px auto;
       border-radius:999px;
-      margin:30px auto 26px;
-      background:linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));
+      background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3));
       box-shadow:0 0 20px rgba(103,175,138,0.25);
     }
 
-    .mini-text{
-      color:#93a19a;
-      font-size:14px;
+    .section{
+      margin-top:60px;
+      padding:40px;
+      border-radius:24px;
+      background:var(--card);
+      border:1px solid var(--border);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    .section h2{
+      margin:0 0 14px;
+      font-size:28px;
+    }
+
+    .section p{
+      color:var(--muted);
       line-height:1.8;
       max-width:620px;
       margin:0 auto;
+      font-size:15px;
     }
 
     .actions{
+      margin-top:40px;
       display:flex;
       justify-content:center;
+      gap:16px;
       flex-wrap:wrap;
-      gap:14px;
-      margin-top:34px;
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:180px;
-      padding:15px 24px;
-      border-radius:16px;
+      padding:14px 26px;
+      border-radius:14px;
       text-decoration:none;
-      font-size:15px;
       font-weight:600;
-      transition:all .25s ease;
+      font-size:15px;
+      transition:0.25s;
     }
 
     .btn-primary{
+      background:linear-gradient(135deg,var(--accent1),var(--accent2),var(--accent3));
       color:white;
-      background:linear-gradient(135deg,var(--accent-1),var(--accent-2),var(--accent-3));
-      box-shadow:0 14px 34px rgba(47,112,135,0.30);
+      box-shadow:0 12px 30px rgba(47,112,135,0.35);
     }
 
     .btn-primary:hover{
       transform:translateY(-2px);
-      box-shadow:0 18px 40px rgba(47,112,135,0.38);
     }
 
     .btn-secondary{
-      color:var(--text);
       background:rgba(255,255,255,0.04);
       border:1px solid rgba(255,255,255,0.08);
+      color:white;
     }
 
     .btn-secondary:hover{
@@ -253,7 +183,7 @@
     }
 
     .footer{
-      margin-top:36px;
+      margin-top:50px;
       color:#8b9690;
       font-size:13px;
       line-height:1.8;
@@ -261,21 +191,25 @@
 
     @media (max-width:640px){
       body{
-        padding:16px;
-      }
-
-      .card{
-        padding:44px 20px 34px;
-        border-radius:24px;
-      }
-
-      .logo-wrap{
-        width:130px;
-        height:130px;
+        padding:24px 16px;
       }
 
       .logo{
-        width:95px;
+        width:135px;
+      }
+
+      .logo-wrap::before{
+        width:190px;
+        height:190px;
+      }
+
+      .section{
+        padding:28px 20px;
+        border-radius:20px;
+      }
+
+      .subtitle{
+        font-size:17px;
       }
 
       .actions{
@@ -288,12 +222,9 @@
     }
   </style>
 </head>
-<body>
-  <div class="orb one"></div>
-  <div class="orb two"></div>
 
-  <main class="card">
-    <div class="badge">Studio créatif digital</div>
+<body>
+  <div class="container">
 
     <div class="logo-wrap">
       <img src="logo-la.png" alt="Logo LabsAStudio" class="logo">
@@ -302,25 +233,29 @@
     <h1>LabsAStudio</h1>
 
     <p class="subtitle">
-      Créations digitales, design et ressources créatives
-      en préparation.
+      Créations digitales, design et ressources créatives en préparation
     </p>
 
-    <div class="accent-line"></div>
+    <div class="line"></div>
 
-    <p class="mini-text">
-      Un univers plus moderne, plus propre et plus visuel arrive bientôt.
-    </p>
+    <div class="section">
+      <h2>Nos créations arrivent bientôt</h2>
 
-    <div class="actions">
-      <a href="mailto:contact@labsastudio.fr" class="btn btn-primary">Me contacter</a>
-      <a href="https://labsastudio.github.io/LabsAStudio/" class="btn btn-secondary">Voir l’aperçu</a>
+      <p>
+        Templates, ressources visuelles et outils créatifs pensés pour les créateurs,
+        les entrepreneurs et les passionnés de design digital.
+      </p>
+
+      <div class="actions">
+        <a href="mailto:contact@labsastudio.fr" class="btn btn-primary">Me contacter</a>
+        <a href="https://labsastudio.github.io/LabsAStudio/" class="btn btn-secondary">Voir l’aperçu</a>
+      </div>
     </div>
 
     <div class="footer">
-      Lancement prochainement<br>
-      © LabsAStudio
+      © LabsAStudio — Studio créatif digital
     </div>
-  </main>
+
+  </div>
 </body>
 </html>
