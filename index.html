@@ -1,91 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LabsAStudio</title>
+  <meta name="description" content="LabsAStudio — Digital creations & tools coming soon." />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root{
+      --bg-1:#0b1020;
+      --bg-2:#111827;
+      --card:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.14);
+      --text:#f9fafb;
+      --muted:rgba(255,255,255,0.72);
+      --accent-1:#60a5fa;
+      --accent-2:#8b5cf6;
+      --accent-3:#22d3ee;
+      --shadow:0 20px 60px rgba(0,0,0,0.35);
+    }
 
-<title>LabsAStudio</title>
+    *{box-sizing:border-box}
 
-<style>
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(96,165,250,0.25), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(139,92,246,0.22), transparent 30%),
+        radial-gradient(circle at 50% 85%, rgba(34,211,238,0.14), transparent 30%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      overflow:hidden;
+    }
 
-body{
-margin:0;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-background: linear-gradient(135deg,#111827,#1f2937);
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-text-align:center;
-}
+    .orb{
+      position:fixed;
+      border-radius:999px;
+      filter:blur(70px);
+      opacity:.45;
+      z-index:0;
+      animation:float 10s ease-in-out infinite;
+    }
 
-.container{
-max-width:700px;
-padding:40px;
-}
+    .orb.one{
+      width:220px;height:220px;
+      background:var(--accent-1);
+      top:8%;left:6%;
+    }
 
-.logo{
-font-size:42px;
-font-weight:700;
-letter-spacing:2px;
-margin-bottom:20px;
-}
+    .orb.two{
+      width:260px;height:260px;
+      background:var(--accent-2);
+      right:8%;top:18%;
+      animation-delay:1.5s;
+    }
 
-.subtitle{
-font-size:20px;
-opacity:0.8;
-margin-bottom:40px;
-}
+    .orb.three{
+      width:220px;height:220px;
+      background:var(--accent-3);
+      bottom:8%;left:38%;
+      animation-delay:3s;
+    }
 
-.button{
-display:inline-block;
-padding:14px 28px;
-background:#6366f1;
-color:white;
-border-radius:8px;
-text-decoration:none;
-font-weight:600;
-transition:0.3s;
-}
+    @keyframes float{
+      0%,100%{transform:translateY(0) translateX(0)}
+      50%{transform:translateY(-12px) translateX(8px)}
+    }
 
-.button:hover{
-background:#4f46e5;
-transform:translateY(-2px);
-}
+    .card{
+      position:relative;
+      z-index:1;
+      width:100%;
+      max-width:760px;
+      background:var(--card);
+      border:1px solid var(--border);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-radius:28px;
+      padding:42px 28px;
+      box-shadow:var(--shadow);
+      text-align:center;
+      animation:fadeUp .8s ease;
+    }
 
-.footer{
-margin-top:40px;
-opacity:0.5;
-font-size:14px;
-}
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(16px)}
+      to{opacity:1; transform:translateY(0)}
+    }
 
-</style>
+    .badge{
+      display:inline-block;
+      padding:8px 14px;
+      border:1px solid rgba(255,255,255,0.16);
+      background:rgba(255,255,255,0.06);
+      border-radius:999px;
+      font-size:13px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:18px;
+    }
 
+    .logo{
+      font-size:clamp(34px, 7vw, 64px);
+      font-weight:800;
+      letter-spacing:.06em;
+      margin:0 0 10px;
+      line-height:1;
+    }
+
+    .logo span{
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .subtitle{
+      margin:0 auto 28px;
+      max-width:600px;
+      font-size:clamp(17px, 2.4vw, 21px);
+      line-height:1.6;
+      color:var(--muted);
+    }
+
+    .actions{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-bottom:26px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-width:160px;
+      padding:14px 22px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      color:white;
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      box-shadow:0 10px 30px rgba(99,102,241,0.35);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(99,102,241,0.42);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,0.06);
+      border-color:rgba(255,255,255,0.14);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.09);
+    }
+
+    .footer{
+      font-size:14px;
+      color:rgba(255,255,255,0.52);
+    }
+
+    .footer a{
+      color:rgba(255,255,255,0.78);
+      text-decoration:none;
+    }
+
+    .footer a:hover{
+      text-decoration:underline;
+    }
+
+    @media (max-width:640px){
+      .card{
+        padding:34px 20px;
+        border-radius:22px;
+      }
+      .actions{
+        flex-direction:column;
+      }
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
 
-<div class="container">
+  <main class="card">
+    <div class="badge">Launching soon</div>
 
-<div class="logo">
-LABSASTUDIO
-</div>
+    <h1 class="logo"><span>LabsAStudio</span></h1>
 
-<div class="subtitle">
-Digital creations & tools coming soon
-</div>
+    <p class="subtitle">
+      Digital creations, tools and modern products are on the way.
+      A clean creative studio built to design useful things with style.
+    </p>
 
-<a class="button" href="mailto:contact@labsastudio.fr">
-Contact
-</a>
+    <div class="actions">
+      <a class="btn btn-primary" href="mailto:contact@labsastudio.fr">Contact</a>
+      <a class="btn btn-secondary" href="https://labsastudio.github.io/LabsAStudio/">Preview</a>
+    </div>
 
-<div class="footer">
-© LabsAStudio
-</div>
-
-</div>
-
+    <div class="footer">
+      © LabsAStudio · Built with GitHub Pages
+    </div>
+  </main>
 </body>
 </html>
